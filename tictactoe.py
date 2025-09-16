@@ -70,6 +70,13 @@ def revisar(): #revisar si ha ganado alguien!
     #no ha ganado nadie:
     return 0
 
+def empate():
+    for row in matriz:
+        for column in range(3):
+            if matriz[row][column] == 0:
+                return False
+    return True
+
 
 """
 state['player'] guarda quién juega: 0 para X, 1 para O.
@@ -106,6 +113,9 @@ def tap(x, y):
 
     # ver si alguien ganó
     if revisar()!= 0:
+        sys.exit()
+
+    if empate() == True:
         sys.exit()
 
 
