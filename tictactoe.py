@@ -88,6 +88,11 @@ players = [drawx, drawo]
 
 def tap(x, y):
     """Draw X or O in tapped square."""
+
+    # Definimos los límites del tablero
+    if x < -200 or x > 200 or y < -200 or y > 200:
+        return  # Si está fuera, no hacemos nada
+    
     x = floor(x)
     y = floor(y)
 
