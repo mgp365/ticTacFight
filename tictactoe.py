@@ -72,8 +72,8 @@ def revisar(): #revisar si ha ganado alguien!
 
 def empate():
     for row in matriz:
-        for column in range(3):
-            if matriz[row][column] == 0:
+        for cell in row:
+            if cell == 0:
                 return False
     return True
 
