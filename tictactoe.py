@@ -9,8 +9,19 @@ Exercises
 """
 
 from turtle import *
-
 from freegames import line
+import sys # cuando eliminemos lo que que si ganan se cierra lo quito!!!
+from turtle import Turtle, Screen
+screen = Screen()
+t = Turtle()
+
+screen.addshape("gato_enojado.gif")
+t.shape("gato_enojado.gif")
+
+t.goto(-250,0)
+
+# Implementación: Matrices para control de versiones
+matriz = [[0,0,0],[0,0,0],[0,0,0]] # matriz inicial (0)
 
 
 def grid():
@@ -40,6 +51,29 @@ def floor(value):
     return ((value + 200) // 133) * 133 - 200
 
 
+def revisar(): #revisar si ha ganado alguien!
+    #filas
+    for row in matriz:
+        if row[0] != 0 and row[0] == row[1] == row[2]:
+            return row[0]
+    #columnas
+    for column in range(3):
+        if matriz[0][column] != 0 and matriz[0][column] == matriz[1][column] == matriz[2][column]:
+            return matriz[0][column]
+    #diagonal izq-der
+    if matriz[0][0] != 0 and matriz[0][0] == matriz[1][1] == matriz[2][2]:
+        return matriz[0][0]
+    #diagonal der-izq
+    if matriz[0][2] != 0 and matriz[0][2] == matriz[1][1] == matriz[2][0]:
+        return matriz[0][2]
+    #no ha ganado nadie:
+    return 0
+
+
+"""
+state['player'] guarda quién juega: 0 para X, 1 para O.
+players es una lista de funciones; players[0] es drawx, players[1] es drawo.
+"""
 state = {'player': 0}
 players = [drawx, drawo]
 
@@ -48,15 +82,35 @@ def tap(x, y):
     """Draw X or O in tapped square."""
     x = floor(x)
     y = floor(y)
+
+    col = int((x + 200) // 133)
+    row = int((y + 200) // 133)
+
+    # casilla ocupada?
+    if matriz[row][col] != 0:
+        print("Casilla ocupada")
+        return
+
+    # checar jugador actual
     player = state['player']
     draw = players[player]
+
+    #dibujar en pantalla
     draw(x, y)
     update()
     state['player'] = not player
 
+    # x --> 1, o --> 2
+    matriz[row][col] = 1 if player == 0 else 2
 
-setup(420, 420, 370, 0)
-hideturtle()
+    # ver si alguien ganó
+    if revisar()!= 0:
+        sys.exit()
+
+
+setup(600, 420, 370, 0)   # ancho = 600, alto = 420
+
+hideturtle() #ocltar cursor
 tracer(False)
 grid()
 update()
