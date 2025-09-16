@@ -126,7 +126,7 @@ def tap(x, y):
         sys.exit()
 
     if empate() == True:
-        sys.exit()
+        return
 
 
 setup(600, 420, 370, 0) #ancho = 600, alto = 420
