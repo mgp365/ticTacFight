@@ -18,6 +18,7 @@ t = Turtle()
 screen.addshape("gato_enojado.gif")
 t.shape("gato_enojado.gif")
 
+t.penup()
 t.goto(-250,0)
 
 # Implementación: Matrices para control de versiones
@@ -108,7 +109,7 @@ def tap(x, y):
         sys.exit()
 
 
-setup(600, 420, 370, 0)   # ancho = 600, alto = 420
+setup(600, 420, 370, 0) #ancho = 600, alto = 420
 
 hideturtle() #ocltar cursor
 tracer(False)
