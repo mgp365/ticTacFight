@@ -91,7 +91,7 @@ def tap(x, y):
 
     # Definimos los límites del tablero
     if x < -200 or x > 200 or y < -200 or y > 200:
-        return  # Si está fuera, no hacemos nada
+        return  # Si está fuera, no se dibuja nada
     
     x = floor(x)
     y = floor(y)
