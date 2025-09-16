@@ -31,20 +31,25 @@ def grid():
     line(67, 200, 67, -200)
     line(-200, -67, 200, -67)
     line(-200, 67, 200, 67)
-
+    screen.bgpic("gato_enojado.gif") # fondo temporal
+    
 
 def drawx(x, y):
     """Draw X player."""
-    line(x, y, x + 133, y + 133)
-    line(x, y + 133, x + 133, y)
+    t_x = Turtle()
+    t_x.penup()
+    t_x.shape("gato_enojado.gif")
+    t_x.goto(x+67, y+67)
+    t_x.showturtle() 
 
 
 def drawo(x, y):
     """Draw O player."""
-    up()
-    goto(x + 67, y + 5)
-    down()
-    circle(62)
+    t_o = Turtle()
+    t_o.penup()
+    t_o.shape("gato_enojado.gif") #cambiar por perro
+    t_o.goto(x+67, y+67)
+    t_o.showturtle() 
 
 
 def floor(value):
@@ -71,7 +76,7 @@ def revisar(): #revisar si ha ganado alguien!
     return 0
 
 def empate():
-    for row in matriz:
+    for row in range(3):
         for column in range(3):
             if matriz[row][column] == 0:
                 return False
