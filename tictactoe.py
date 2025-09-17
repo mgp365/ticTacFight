@@ -1,31 +1,24 @@
 """
 Gato vs Perro - Tic Tac Toe (Clicker + MP3 + GIF animado del gato) — FIX
-
-ARREGLOS CLAVE:
-- Ahora se puede hacer click en el tablero: se usa Screen.onscreenclick(...) (antes estaba mal con .onclick).
-- Redibujo con screen.tracer(0) + screen.update() para que siempre se vean las marcas (X/O).
-- Desactivo/activo el click del tablero al entrar/salir del clicker.
-- Timer visible de 30 s y barra de progreso en el clicker.
-- Música (MP3) del clicker y audio de fin (MP3).
-
-REQUISITOS DE ARCHIVOS (misma carpeta del script / notebook):
-- gato_enojado.gif
-- Pokémon Battle Music - Anime Version.mp3
-- Super Smash Bros Ultimate Final KO Sound Effect.mp3
-- pescado_X.gif
-
-NOTA: Instala pygame si aún no lo tienes:
-%pip install pygame
 """
 
 # ===================== CONFIG (RUTAS DE ARCHIVOS) =====================
 
 # GIF animado del gato (tablero y clicker)
-GATO_GIF_BOARD   = "gato_enojado.gif"   # GIF animado en el tablero (costado)
-GATO_GIF_CLICKER = "gato_enojado.gif"   # GIF animado en el clicker
+GATO_GIF_BOARD   = "gato_principal.gif"   # GIF animado en el tablero (costado)
+GATO_GIF_CLICKER = "gato_pelea.gif"   # GIF animado en el clicker
+GATO_GIF_LOSE = "gato_enojado.gif" # GIF del gato cuando pierde (clicker)
+
+# GIF del perro (tablero y clicker)
+PERRO_GIF_BOARD = "perro_principal.gif"      # GIF animado en el tablero (costado
+PERRO_GIF_CLICKER = "perro_enojado.gif"      # GIF animado en el clicker)
+PERRO_GIF_LOSE = "perro_enojado.gif" # GIF del perro cuando pierde (clicker)
 
 # GIF del pescado (X del gato)
 GATO_GIF_FISH = "pescado_X.gif"        # GIF del pescado (tablero)
+
+# GIF animado del fondo del tablero
+FONDO_GIF = "fondo.gif"         # GIF animado del fondo del tablero 
 
 # Audio MP3
 CLICKER_MP3 = "Pokémon Battle Music - Anime Version.mp3"               # música (loop) del clicker (30 s)
@@ -200,8 +193,10 @@ right_sidebar = ttk.Frame(root, padding=10)   # Perro (placeholder)
 # Label del GIF del gato en el tablero (izquierda)
 gato_board_image_lbl = ttk.Label(left_sidebar)
 gato_board_image_lbl.pack(pady=10)
-# Placeholder del perro (derecha)
-ttk.Label(right_sidebar, text="Aquí irá la imagen del Perro", style="Label.TLabel").pack(pady=10)
+
+# Label del GIF del perro en el tablero (derecha)
+perro_board_image_lbl = ttk.Label(right_sidebar)
+perro_board_image_lbl.pack(pady=10)
 
 # --------- Vista Clicker ----------
 clicker_frame = ttk.Frame(root, padding=20)
@@ -236,6 +231,8 @@ ttk.Label(perro_panel, text="Perro (P)", style="Sub.TLabel").pack(pady=(0,8))
 perro_counter_var = tk.StringVar(value="0")
 ttk.Label(perro_panel, textvariable=perro_counter_var, style="Title.TLabel").pack()
 ttk.Label(perro_panel, text="Aquí irá la imagen del Perro", style="Label.TLabel").pack(pady=10)
+perro_clicker_image_lbl = ttk.Label(perro_panel)  # aquí va el GIF del perro en el clicker
+perro_clicker_image_lbl.pack(pady=10)
 
 clicker_info = ttk.Label(clicker_frame, text="Pulsa tu tecla lo más rápido que puedas cuando diga ¡YA!\nGato = Q   |   Perro = P", style="Label.TLabel")
 clicker_info.pack(pady=6)
@@ -286,6 +283,9 @@ def hay_empate():
 # --------- Cargar frames de GIF (tablero y clicker) ----------
 gato_board_frames   = load_gif_frames(GATO_GIF_BOARD)
 gato_clicker_frames = load_gif_frames(GATO_GIF_CLICKER)
+
+perro_board_frames = load_gif_frames(PERRO_GIF_BOARD)
+perro_clicker_frames = load_gif_frames(PERRO_GIF_CLICKER)
 
 # --------- Timer del clicker (actualiza label y barra) ----------
 _timer_active = False
@@ -439,6 +439,9 @@ def lanzar_clicker_empate():
     # Iniciar animación del GIF del gato (clicker)
     if gato_clicker_frames:
         start_gif_animation(gato_clicker_image_lbl, gato_clicker_frames, delay_ms=GIF_DELAY_MS)
+    # Iniciar animación del GIF del perro (clicker)
+    if perro_clicker_frames:
+        start_gif_animation(perro_clicker_image_lbl, perro_clicker_frames, delay_ms=GIF_DELAY_MS)
 
     # 3-2-1-¡YA! (1 segundo por paso)
     secuencia_countdown([3,2,1,"¡YA!"], inicio_clicks, intervalo_ms=1000)
@@ -499,6 +502,9 @@ def fin_clicks():
     # Detener animación del GIF del gato (clicker)
     try: stop_gif_animation(gato_clicker_image_lbl)
     except: pass
+    # Detener animación del GIF del perro (clicker)
+    try: stop_gif_animation(perro_clicker_image_lbl)
+    except: pass
 
     # Determinar ganador del clicker
     if gato_clicks > perro_clicks:
@@ -526,11 +532,13 @@ def fin_clicks():
 
 def regresar_a_tablero():
     hide_widget(clicker_frame)
-    # Volver a mostrar sidebars del tablero y animar el gato
+    # Volver a mostrar sidebars del tablero y animar el gato y el perro
     left_sidebar.pack(side="left", fill="y")
     right_sidebar.pack(side="right", fill="y")
     if gato_board_frames:
         start_gif_animation(gato_board_image_lbl, gato_board_frames, delay_ms=GIF_DELAY_MS)
+    if perro_board_frames:
+        start_gif_animation(perro_board_image_lbl, perro_board_frames, delay_ms=GIF_DELAY_MS)
 
     state['player'] = 0
     limpiar_tablero()
@@ -552,11 +560,14 @@ def empezar_juego():
     hide_widget(menu_frame)
     topbar_frame.pack(side="top", fill="x")
 
-    # Mostrar sidebars del tablero y animar GIF del gato
+    # Mostrar sidebars del tablero y animar GIF del gato y el perro
     left_sidebar.pack(side="left", fill="y")
     right_sidebar.pack(side="right", fill="y")
     if gato_board_frames:
         start_gif_animation(gato_board_image_lbl, gato_board_frames, delay_ms=GIF_DELAY_MS)
+    
+    if perro_board_frames:
+        start_gif_animation(perro_board_image_lbl, perro_board_frames, delay_ms=GIF_DELAY_MS)
 
     limpiar_tablero()
     actualizar_turno_label()
