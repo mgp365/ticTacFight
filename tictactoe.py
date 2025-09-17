@@ -176,47 +176,6 @@ style.configure("Entry.TEntry", padding=6)
 style.configure("Primary.TButton", font=("Segoe UI", 12, "bold"), padding=8)
 style.configure("Ghost.TButton", font=("Segoe UI", 11), padding=6)
 
-# --------- Estado del juego ----------
-matriz = [[0,0,0],[0,0,0],[0,0,0]]   # 0 libre, 1 Gato, 2 Perro
-state = {'player': 0}                 # 0 Gato, 1 Perro
-players_names = ["Gato", "Perro"]
-marks_turtles = []
-
-screen.register_shape(GATO_GIF_FISH) # registrar la forma del pescado
-
-def draw_GATO_at(x, y):
-    t = Turtle(visible=False)
-    t.penup()
-    t.shape(GATO_GIF_FISH)
-    t.goto(x+60, y+95)
-    t.showturtle()
-    marks_turtles.append(t)
-
-def draw_PERRO_at(x, y):
-    t = Turtle(visible=False)
-    t.hideturtle(); t.speed(0); t.color("#1d6fb8"); t.width(7)
-    t.penup(); t.goto(x+66, y+20); t.pendown(); t.circle(46); t.penup()
-    marks_turtles.append(t)
-
-def draw_mark_for(player, x, y):
-    (draw_GATO_at if player == 0 else draw_PERRO_at)(x, y)
-    screen.update()  # <-- asegura que se vea el trazo con tracer(0)
-
-def revisar_ganador():
-    # filas
-    for row in matriz:
-        if row[0] and row[0] == row[1] == row[2]: return row[0]
-    # columnas
-    for c in range(3):
-        if matriz[0][c] and matriz[0][c] == matriz[1][c] == matriz[2][c]: return matriz[0][c]
-    # diagonales
-    if matriz[0][0] and matriz[0][0] == matriz[1][1] == matriz[2][2]: return matriz[0][0]
-    if matriz[0][2] and matriz[0][2] == matriz[1][1] == matriz[2][0]: return matriz[0][2]
-    return 0
-
-def hay_empate():
-    return all(matriz[r][c] != 0 for r in range(3) for c in range(3))
-
 # --------- UI: Menú (simple para iniciar) ----------
 menu_frame = ttk.Frame(root, padding=20)
 ttk.Label(menu_frame, text="Gato vs Perro", style="Title.TLabel").grid(row=0, column=0, columnspan=2, pady=(0,12))
@@ -282,6 +241,47 @@ clicker_info = ttk.Label(clicker_frame, text="Pulsa tu tecla lo más rápido que
 clicker_info.pack(pady=6)
 clicker_buttons = ttk.Frame(clicker_frame); clicker_buttons.pack(pady=12)
 btn_volver = ttk.Button(clicker_buttons, text="Volver al tablero", style="Primary.TButton"); btn_volver.pack()
+
+# --------- Estado del juego ----------
+matriz = [[0,0,0],[0,0,0],[0,0,0]]   # 0 libre, 1 Gato, 2 Perro
+state = {'player': 0}                 # 0 Gato, 1 Perro
+players_names = ["Gato", "Perro"]
+marks_turtles = []
+
+screen.register_shape(GATO_GIF_FISH) # registrar la forma del pescado
+
+def draw_GATO_at(x, y):
+    t = Turtle(visible=False)
+    t.penup()
+    t.shape(GATO_GIF_FISH)
+    t.goto(x+60, y+95)
+    t.showturtle()
+    marks_turtles.append(t)
+
+def draw_PERRO_at(x, y):
+    t = Turtle(visible=False)
+    t.hideturtle(); t.speed(0); t.color("#1d6fb8"); t.width(7)
+    t.penup(); t.goto(x+66, y+20); t.pendown(); t.circle(46); t.penup()
+    marks_turtles.append(t)
+
+def draw_mark_for(player, x, y):
+    (draw_GATO_at if player == 0 else draw_PERRO_at)(x, y)
+    screen.update()  # <-- asegura que se vea el trazo con tracer(0)
+
+def revisar_ganador():
+    # filas
+    for row in matriz:
+        if row[0] and row[0] == row[1] == row[2]: return row[0]
+    # columnas
+    for c in range(3):
+        if matriz[0][c] and matriz[0][c] == matriz[1][c] == matriz[2][c]: return matriz[0][c]
+    # diagonales
+    if matriz[0][0] and matriz[0][0] == matriz[1][1] == matriz[2][2]: return matriz[0][0]
+    if matriz[0][2] and matriz[0][2] == matriz[1][1] == matriz[2][0]: return matriz[0][2]
+    return 0
+
+def hay_empate():
+    return all(matriz[r][c] != 0 for r in range(3) for c in range(3))
 
 # --------- Cargar frames de GIF (tablero y clicker) ----------
 gato_board_frames   = load_gif_frames(GATO_GIF_BOARD)
