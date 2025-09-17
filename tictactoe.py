@@ -25,7 +25,7 @@ GATO_GIF_BOARD   = "gato_enojado.gif"   # GIF animado en el tablero (costado)
 GATO_GIF_CLICKER = "gato_enojado.gif"   # GIF animado en el clicker
 
 # GIF del pescado (X del gato)
-GATO_GIF_FISH = "pescado_X.gif"        # GIF animado del pescado (tablero)
+GATO_GIF_FISH = "pescado_X.gif"        # GIF del pescado (tablero)
 
 # Audio MP3
 CLICKER_MP3 = "Pokémon Battle Music - Anime Version.mp3"               # música (loop) del clicker (30 s)
