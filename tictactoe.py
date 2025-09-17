@@ -12,6 +12,7 @@ REQUISITOS DE ARCHIVOS (misma carpeta del script / notebook):
 - gato_enojado.gif
 - Pokémon Battle Music - Anime Version.mp3
 - Super Smash Bros Ultimate Final KO Sound Effect.mp3
+- pescado_X.gif
 
 NOTA: Instala pygame si aún no lo tienes:
 %pip install pygame
@@ -22,6 +23,9 @@ NOTA: Instala pygame si aún no lo tienes:
 # GIF animado del gato (tablero y clicker)
 GATO_GIF_BOARD   = "gato_enojado.gif"   # GIF animado en el tablero (costado)
 GATO_GIF_CLICKER = "gato_enojado.gif"   # GIF animado en el clicker
+
+# GIF del pescado (X del gato)
+GATO_GIF_FISH = "pescado_X.gif"        # GIF animado del pescado (tablero)
 
 # Audio MP3
 CLICKER_MP3 = "Pokémon Battle Music - Anime Version.mp3"               # música (loop) del clicker (30 s)
@@ -153,17 +157,39 @@ def hide_widget(w):
         except Exception:
             pass
 
+# --------- Pantalla / Estilos ----------
+screen = get_screen()
+screen.setup(900, 700)  # más ancho para sidebars
+screen.title("Gato vs Perro - Tic Tac Toe")
+screen.tracer(0)        # dibujamos manualmente y actualizamos con screen.update()
+
+root = screen._root
+root.minsize(900, 700)
+
+style = ttk.Style(root)
+try: style.theme_use('clam')
+except: pass
+style.configure("Title.TLabel", font=("Segoe UI", 22, "bold"))
+style.configure("Sub.TLabel", font=("Segoe UI", 14))
+style.configure("Label.TLabel", font=("Segoe UI", 12))
+style.configure("Entry.TEntry", padding=6)
+style.configure("Primary.TButton", font=("Segoe UI", 12, "bold"), padding=8)
+style.configure("Ghost.TButton", font=("Segoe UI", 11), padding=6)
+
 # --------- Estado del juego ----------
 matriz = [[0,0,0],[0,0,0],[0,0,0]]   # 0 libre, 1 Gato, 2 Perro
 state = {'player': 0}                 # 0 Gato, 1 Perro
 players_names = ["Gato", "Perro"]
 marks_turtles = []
 
+screen.register_shape(GATO_GIF_FISH) # registrar la forma del pescado
+
 def draw_GATO_at(x, y):
     t = Turtle(visible=False)
-    t.hideturtle(); t.speed(0); t.color("#cc2936")
-    t_line(t, x+20, y+20, x+113, y+113, width=7)
-    t_line(t, x+113, y+20, x+20, y+113, width=7)
+    t.penup()
+    t.shape(GATO_GIF_FISH)
+    t.goto(x+60, y+95)
+    t.showturtle()
     marks_turtles.append(t)
 
 def draw_PERRO_at(x, y):
@@ -190,25 +216,6 @@ def revisar_ganador():
 
 def hay_empate():
     return all(matriz[r][c] != 0 for r in range(3) for c in range(3))
-
-# --------- Pantalla / Estilos ----------
-screen = get_screen()
-screen.setup(900, 700)  # más ancho para sidebars
-screen.title("Gato vs Perro - Tic Tac Toe")
-screen.tracer(0)        # dibujamos manualmente y actualizamos con screen.update()
-
-root = screen._root
-root.minsize(900, 700)
-
-style = ttk.Style(root)
-try: style.theme_use('clam')
-except: pass
-style.configure("Title.TLabel", font=("Segoe UI", 22, "bold"))
-style.configure("Sub.TLabel", font=("Segoe UI", 14))
-style.configure("Label.TLabel", font=("Segoe UI", 12))
-style.configure("Entry.TEntry", padding=6)
-style.configure("Primary.TButton", font=("Segoe UI", 12, "bold"), padding=8)
-style.configure("Ghost.TButton", font=("Segoe UI", 11), padding=6)
 
 # --------- UI: Menú (simple para iniciar) ----------
 menu_frame = ttk.Frame(root, padding=20)
