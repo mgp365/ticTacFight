@@ -25,10 +25,7 @@ CLICKER_MP3 = "Pokémon Battle Music - Anime Version.mp3"               # músic
 WIN_MP3     = "Super Smash Bros Ultimate Final KO Sound Effect.mp3"    # audio corto al finalizar
 
 # Duración del clicker (milisegundos)
-CLICK_TIME_MS = 30_000  # 30 segundos
-
-# Velocidad de animación del GIF (ms por frame)
-GIF_DELAY_MS = 80
+CLICK_TIME_MS = 5_000  # 5 segundos
 
 # =====================================================================
 
@@ -207,7 +204,7 @@ countdown_var = tk.StringVar(value="")
 ttk.Label(clicker_frame, textvariable=countdown_var, style="Title.TLabel").pack(pady=(0,12))
 
 # Contador visible 00:30 y barra de progreso
-timer_var = tk.StringVar(value="00:30")
+timer_var = tk.StringVar(value="00:05")
 timer_label = ttk.Label(clicker_frame, textvariable=timer_var, style="Sub.TLabel")
 timer_label.pack(pady=(0,8))
 
@@ -230,7 +227,6 @@ perro_panel = ttk.Frame(players_panel, padding=10); perro_panel.pack(side="left"
 ttk.Label(perro_panel, text="Perro (P)", style="Sub.TLabel").pack(pady=(0,8))
 perro_counter_var = tk.StringVar(value="0")
 ttk.Label(perro_panel, textvariable=perro_counter_var, style="Title.TLabel").pack()
-ttk.Label(perro_panel, text="Aquí irá la imagen del Perro", style="Label.TLabel").pack(pady=10)
 perro_clicker_image_lbl = ttk.Label(perro_panel)  # aquí va el GIF del perro en el clicker
 perro_clicker_image_lbl.pack(pady=10)
 
@@ -438,10 +434,10 @@ def lanzar_clicker_empate():
 
     # Iniciar animación del GIF del gato (clicker)
     if gato_clicker_frames:
-        start_gif_animation(gato_clicker_image_lbl, gato_clicker_frames, delay_ms=GIF_DELAY_MS)
+        start_gif_animation(gato_clicker_image_lbl, gato_clicker_frames, delay_ms=50)
     # Iniciar animación del GIF del perro (clicker)
     if perro_clicker_frames:
-        start_gif_animation(perro_clicker_image_lbl, perro_clicker_frames, delay_ms=GIF_DELAY_MS)
+        start_gif_animation(perro_clicker_image_lbl, perro_clicker_frames, delay_ms=100)
 
     # 3-2-1-¡YA! (1 segundo por paso)
     secuencia_countdown([3,2,1,"¡YA!"], inicio_clicks, intervalo_ms=1000)
@@ -536,9 +532,9 @@ def regresar_a_tablero():
     left_sidebar.pack(side="left", fill="y")
     right_sidebar.pack(side="right", fill="y")
     if gato_board_frames:
-        start_gif_animation(gato_board_image_lbl, gato_board_frames, delay_ms=GIF_DELAY_MS)
+        start_gif_animation(gato_board_image_lbl, gato_board_frames, delay_ms=500)
     if perro_board_frames:
-        start_gif_animation(perro_board_image_lbl, perro_board_frames, delay_ms=GIF_DELAY_MS)
+        start_gif_animation(perro_board_image_lbl, perro_board_frames, delay_ms=500)
 
     state['player'] = 0
     limpiar_tablero()
@@ -564,10 +560,10 @@ def empezar_juego():
     left_sidebar.pack(side="left", fill="y")
     right_sidebar.pack(side="right", fill="y")
     if gato_board_frames:
-        start_gif_animation(gato_board_image_lbl, gato_board_frames, delay_ms=GIF_DELAY_MS)
+        start_gif_animation(gato_board_image_lbl, gato_board_frames, delay_ms=500)
     
     if perro_board_frames:
-        start_gif_animation(perro_board_image_lbl, perro_board_frames, delay_ms=GIF_DELAY_MS)
+        start_gif_animation(perro_board_image_lbl, perro_board_frames, delay_ms=500)
 
     limpiar_tablero()
     actualizar_turno_label()
