@@ -1,37 +1,28 @@
-"""
-Gato vs Perro - Tic Tac Toe (Clicker + MP3 + GIF animado del gato) — FIX
-"""
+""" Gato vs Perro - Tic Tac Toe """
 
 # ===================== CONFIG (RUTAS DE ARCHIVOS) =====================
 
 # GIF animado del gato (tablero y clicker)
 GATO_GIF_BOARD   = "gato_principal.gif"   # GIF animado en el tablero (costado)
-GATO_GIF_CLICKER = "gato_pelea.gif"   # GIF animado en el clicker
-GATO_GIF_LOSE = "gato_enojado.gif" # GIF del gato cuando pierde (clicker)
+GATO_GIF_CLICKER = "gato_pelea.gif"       # GIF animado en el clicker
 
 # GIF del perro (tablero y clicker)
-PERRO_GIF_BOARD = "perro_principal.gif"      # GIF animado en el tablero (costado
-PERRO_GIF_CLICKER = "perro_enojado.gif"      # GIF animado en el clicker)
-PERRO_GIF_LOSE = "perro_enojado.gif" # GIF del perro cuando pierde (clicker)
+PERRO_GIF_BOARD = "perro_principal.gif"   # GIF animado en el tablero (costado)
+PERRO_GIF_CLICKER = "perro_enojado.gif"   # GIF animado en el clicker
 
 # GIF del pescado (X del gato)
-GATO_GIF_FISH = "pescado_X.gif"        # GIF del pescado (tablero)
-
-# GIF animado del fondo del tablero
-FONDO_GIF = "fondo.gif"         # GIF animado del fondo del tablero 
+GATO_GIF_FISH = "pescado_X.gif"           # GIF del pescado (tablero)
 
 # Audio MP3
-CLICKER_MP3 = "clicker_song.mp3"               # música (loop) del clicker (5 s)
-WIN_MP3     = "Super Smash Bros Ultimate Final KO Sound Effect.mp3"    # audio corto al finalizar
+CLICKER_MP3 = "clicker_song.mp3"          # música (loop) del clicker (5 s)
+WIN_MP3     = "Super Smash Bros Ultimate Final KO Sound Effect.mp3"  # audio corto al finalizar
 
 # Duración del clicker (milisegundos)
 CLICK_TIME_MS = 5_000  # 5 segundos
 
 # =====================================================================
 
-import sys
 import time
-from pathlib import Path
 import tkinter as tk
 from tkinter import ttk
 from turtle import Turtle, Screen
@@ -49,16 +40,14 @@ except Exception as e:
     print("[AVISO] Sonido deshabilitado (pygame.mixer no disponible o no inició):", e)
 
 def music_play_loop(mp3_path: str):
-    """Reproduce un MP3 en loop (canal de música)."""
-    if _PYGAME_OK and mp3_path and Path(mp3_path).exists():
+    if _PYGAME_OK:
         try:
             mixer.music.load(mp3_path)
-            mixer.music.play(-1)  # loop
+            mixer.music.play(-1)
         except Exception as e:
             print("[Audio] No se pudo reproducir (loop):", e)
 
 def music_stop():
-    """Detiene el canal de música."""
     if _PYGAME_OK:
         try:
             mixer.music.stop()
@@ -66,8 +55,7 @@ def music_stop():
             print("[Audio] No se pudo detener:", e)
 
 def music_play_once(mp3_path: str):
-    """Reproduce un MP3 una vez (sin loop) en el canal de música."""
-    if _PYGAME_OK and mp3_path and Path(mp3_path).exists():
+    if _PYGAME_OK:
         try:
             mixer.music.load(mp3_path)
             mixer.music.play(0)
@@ -104,7 +92,6 @@ def floor_to_cell(value):
 
 # --------- GIF animado (carga y animación) ----------
 def load_gif_frames(path: str):
-    """Devuelve lista de frames (tk.PhotoImage) de un GIF animado."""
     frames = []
     idx = 0
     while True:
@@ -117,7 +104,6 @@ def load_gif_frames(path: str):
     return frames
 
 def start_gif_animation(label_widget, frames, delay_ms=80, state_flag_name="_anim_run"):
-    """Anima 'frames' en 'label_widget' mientras el flag esté True."""
     if not frames:
         return
     setattr(label_widget, state_flag_name, True)
@@ -136,7 +122,6 @@ def start_gif_animation(label_widget, frames, delay_ms=80, state_flag_name="_ani
     _tick()
 
 def stop_gif_animation(label_widget, state_flag_name="_anim_run"):
-    """Detiene la animación del label."""
     setattr(label_widget, state_flag_name, False)
 
 # --------- Helpers UI ----------
