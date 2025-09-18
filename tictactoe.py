@@ -21,7 +21,7 @@ GATO_GIF_FISH = "pescado_X.gif"        # GIF del pescado (tablero)
 FONDO_GIF = "fondo.gif"         # GIF animado del fondo del tablero 
 
 # Audio MP3
-CLICKER_MP3 = "Pokémon Battle Music - Anime Version.mp3"               # música (loop) del clicker (30 s)
+CLICKER_MP3 = "clicker_song.mp3"               # música (loop) del clicker (5 s)
 WIN_MP3     = "Super Smash Bros Ultimate Final KO Sound Effect.mp3"    # audio corto al finalizar
 
 # Duración del clicker (milisegundos)
@@ -189,7 +189,7 @@ right_sidebar = ttk.Frame(root, padding=10)   # Perro (placeholder)
 
 # Label del GIF del gato en el tablero (izquierda)
 gato_board_image_lbl = ttk.Label(left_sidebar)
-gato_board_image_lbl.pack(pady=10)
+gato_board_image_lbl.pack(pady=25)
 
 # Label del GIF del perro en el tablero (derecha)
 perro_board_image_lbl = ttk.Label(right_sidebar)
@@ -203,16 +203,15 @@ ttk.Label(clicker_frame, text="Clicker de desempate", style="Title.TLabel").pack
 countdown_var = tk.StringVar(value="")
 ttk.Label(clicker_frame, textvariable=countdown_var, style="Title.TLabel").pack(pady=(0,12))
 
-# Contador visible 00:30 y barra de progreso
+# Contador visible 00:05 y barra de progreso
 timer_var = tk.StringVar(value="00:05")
 timer_label = ttk.Label(clicker_frame, textvariable=timer_var, style="Sub.TLabel")
 timer_label.pack(pady=(0,8))
 
-timer_bar = ttk.Progressbar(clicker_frame, orient="horizontal", length=360,
-                            mode="determinate", maximum=CLICK_TIME_MS)
+timer_bar = ttk.Progressbar(clicker_frame, orient="horizontal", length=360, mode="determinate", maximum=CLICK_TIME_MS)
 timer_bar.pack(pady=(0,12))
 
-players_panel = ttk.Frame(clicker_frame); players_panel.pack(pady=8, fill="x")
+players_panel = ttk.Frame(clicker_frame, padding=10, style="Players.TFrame"); players_panel.pack(pady=8, fill="x")
 
 # Panel Gato (con GIF)
 gato_panel = ttk.Frame(players_panel, padding=10); gato_panel.pack(side="left", expand=True, fill="both", padx=8)
@@ -283,16 +282,19 @@ gato_clicker_frames = load_gif_frames(GATO_GIF_CLICKER)
 perro_board_frames = load_gif_frames(PERRO_GIF_BOARD)
 perro_clicker_frames = load_gif_frames(PERRO_GIF_CLICKER)
 
+gato_board_frames = [f.subsample(2,2) for f in gato_board_frames]
+perro_board_frames = [f.subsample(2,2) for f in perro_board_frames]
+
 # --------- Timer del clicker (actualiza label y barra) ----------
 _timer_active = False
 _timer_t0 = 0.0
 
 def start_click_timer():
-    """Inicia el temporizador visible de 30 s."""
+    """Inicia el temporizador visible de 5 s."""
     global _timer_active, _timer_t0
     _timer_active = True
     _timer_t0 = time.monotonic()
-    timer_var.set("00:30")
+    timer_var.set("00:05")
     timer_bar['value'] = 0
     _tick_timer()
 
@@ -353,6 +355,8 @@ def soft_exit():
     except: pass
     try: screen.title("Gato vs Perro (cerrado suavemente)")
     except: pass
+
+    root.destroy()
 
 btn_exit.configure(command=soft_exit)
 
@@ -428,7 +432,7 @@ def lanzar_clicker_empate():
     gato_clicks = 0; perro_clicks = 0; clicker_active = False
     gato_counter_var.set("0"); perro_counter_var.set("0")
     countdown_var.set("")
-    timer_var.set("00:30"); timer_bar['value'] = 0
+    timer_var.set("00:05"); timer_bar['value'] = 0
 
     clicker_frame.place(relx=0.5, rely=0.5, anchor="center")
 
@@ -458,12 +462,12 @@ def inicio_clicks():
     gato_clicks = 0; perro_clicks = 0
     gato_counter_var.set("0"); perro_counter_var.set("0")
 
-    # Iniciar temporizador visible de 30 s
+    # Iniciar temporizador visible de 5 s
     start_click_timer()
 
     root.bind("<KeyPress-q>", on_q); root.bind("<KeyPress-Q>", on_q)
     root.bind("<KeyPress-p>", on_p); root.bind("<KeyPress-P>", on_p)
-    # Al finalizar los 30 s se corta la música y pasamos a resultado
+    # Al finalizar los 5 s se corta la música y pasamos a resultado
     root.after(CLICK_TIME_MS, fin_clicks)
 
 def on_q(event=None):
