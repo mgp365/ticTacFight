@@ -17,7 +17,7 @@ tracer(False)
 
 # GIFS importados
 screen.addshape("gato_principal.gif")
-screen.addshape("gato_pelea.gif")
+screen.addshape("Dibujos_TICTACTOE/gato_pelea.gif")
 screen.addshape("perro_principal.gif")
 screen.addshape("Dibujos_TICTACTOE/perrp_pelea.gif")
 screen.addshape("pescado_X.gif")
@@ -354,7 +354,7 @@ def clicker_round():
     gato_clicker = Turtle()
     gato_clicker.hideturtle()
     gato_clicker.penup()
-    gato_clicker.shape("gato_pelea.gif")
+    gato_clicker.shape("Dibujos_TICTACTOE/gato_pelea.gif")
     gato_clicker.goto(-300, -165)
     gato_clicker.showturtle()
 
