@@ -30,7 +30,7 @@ screen.addshape("3_corazones.gif")
 screen.addshape("2_corazones.gif")
 screen.addshape("1_corazon.gif")
 
-# Implementación: Matrices para control de versiones
+# Implementación: Matrices para control de rondas
 matriz = [[0,0,0],[0,0,0],[0,0,0]] # matriz inicial (0)
 
 # Crear turtle para el grid (para poder borrarlo y redibujarlo)
