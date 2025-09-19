@@ -21,14 +21,14 @@ screen.addshape("gato_pelea.gif")
 screen.addshape("perro_principal.gif")
 screen.addshape("Dibujos_TICTACTOE/perrp_pelea.gif")
 screen.addshape("pescado_X.gif")
-screen.addshape("fondo.gif")
+screen.addshape("Dibujos_TICTACTOE/fondo.gif")
 screen.addshape("Dibujos_TICTACTOE/3_corazones.gif")
 screen.addshape("Dibujos_TICTACTOE/2_corazones.gif")
 screen.addshape("Dibujos_TICTACTOE/1_corazon.gif")
 screen.addshape("perro_final.gif")
 screen.addshape("gato_final.gif")
 screen.addshape("hueso_perro_O.gif")
-# AÑADIR PERRO PELEANDO Y HUESO
+
 
 # Matriz de control inicial, va cambiando con el juego
 matriz = [[0,0,0],[0,0,0],[0,0,0]]
@@ -67,7 +67,7 @@ def grid():
     grid_turtle.goto(200, 67)
 
     grid_turtle.penup()
-    screen.bgpic("fondo.gif") # Fondo del tablero
+    screen.bgpic("Dibujos_TICTACTOE/fondo.gif") # Fondo del tablero
 
 # Listas globales para x y o
 turtles_jugadas = []
@@ -404,7 +404,7 @@ def clicker_round():
     screen.onkey(None, "l")
 
     # Reiniciar el tablero
-    screen.bgpic("fondo.gif") # Restaurar fondo
+    screen.bgpic("Dibujos_TICTACTOE/fondo.gif") # Restaurar fondo
     grid() # Redibujar grid
     gato.showturtle() # Mostrar gato principal
     perro.showturtle() # Mostrar perro principal
