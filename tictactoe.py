@@ -22,7 +22,7 @@ screen.addshape("gato_pelea.gif")
 screen.addshape("perro_principal.gif")
 screen.addshape("perro_enojado.gif")
 screen.addshape("pescado_X.gif")
-screen.addshape("fondo_tictactoe_(1).gif")
+screen.addshape("fondo.gif")
 screen.addshape("3_corazones.gif")
 screen.addshape("2_corazones.gif")
 screen.addshape("1_corazon.gif")
@@ -68,7 +68,7 @@ def grid():
     grid_turtle.goto(200, 67)
 
     grid_turtle.penup()
-    screen.bgpic("fondo_tictactoe_(1).gif") # Fondo del tablero
+    screen.bgpic("fondo.gif") # Fondo del tablero
 
 # Listas globales para x y o
 turtles_jugadas = []
@@ -410,7 +410,6 @@ def clicker_round():
     grid() # Redibujar grid
     gato.showturtle() # Mostrar gato principal
     perro.showturtle() # Mostrar perro principal
-    screen.bgpic("fondo_tictactoe_(1).gif") # restaurar fondo
     grid() # redibujar grid
     gato.showturtle()        # mostrar gato principal
     perro.showturtle()       # mostrar perro principal
