@@ -5,6 +5,11 @@ from freegames import line
 import sys # cuando eliminemos lo que que si ganan se cierra lo quito!!!
 from turtle import Turtle, Screen
 import time
+import pygame
+
+pygame.mixer.init()
+pygame.mixer.music.load("clicker_song.mp3")
+pygame.mixer.music.play(-1)
 
 screen = Screen()
 tracer(False)
@@ -94,7 +99,7 @@ vida_perro.penup()
 vida_perro.goto(290, -50)
 vida_perro.showturtle()
 
-# --- Funciones para el juego ---
+# -------------- FUNCIONES DEL JUEGO!!! :0
 def mostrar_vidas(): #mostrar vidas restantes con los gifs
     if vidas_gato == 3: vida_gato.shape("3_corazones.gif")
     elif vidas_gato == 2: vida_gato.shape("2_corazones.gif")
@@ -123,13 +128,11 @@ def drawo(x, y):
 
 
 def reiniciar_tablero():
-    # Limpiar el tablero para una nueva ronda
     global matriz, turtles_jugadas
 
-    # Reiniciar la matriz
-    matriz = [[0,0,0],[0,0,0],[0,0,0]]
+    matriz = [[0,0,0],[0,0,0],[0,0,0]] # Reiniciar la matriz
 
-    # Borrar todos los turtles de X/O
+    #Borrar todos los turtles de X/O
     for t_xo in turtles_jugadas:
         t_xo.hideturtle()
         t_xo.clear()
@@ -182,7 +185,6 @@ vidas_perro = 3
 
 def tap(x, y):
     """Draw X or O in tapped square."""
-
     global vidas_gato, vidas_perro
 
     # Definimos los límites del tablero
@@ -223,8 +225,34 @@ def tap(x, y):
         mostrar_vidas() # actualizar vidas en pantalla
 
         if vidas_gato == 0 or vidas_perro == 0: # si alguien se queda sin vidas, termina el juego
-            print("¡Juego terminado!")
-            sys.exit()
+            #print("¡Juego terminado!")
+            # Limpiar tablero y dejar en blanco
+            screen.bgpic("")  # quitar fondo
+            grid_turtle.clear() # borrar líneas del grid
+            for t_xo in turtles_jugadas:
+                t_xo.hideturtle() # ocultar todas las X y O
+            gato.hideturtle()        # ocultar gato principal
+            perro.hideturtle()       # ocultar perro principal
+            vida_gato.hideturtle()  # ocultar vidas
+            vida_perro.hideturtle()
+            screen.update()
+
+                # Countdown para cerrar
+            pre_countdown = 5
+            pre_timer = Turtle()
+            pre_timer.hideturtle()
+            pre_timer.penup()
+            pre_timer.goto(0, 100)
+            for i in range(pre_countdown, 0, -1): # cuenta regresiva
+                pre_timer.clear()
+                if(vidas_perro < vidas_gato):
+                    pre_timer.write(f"¡Los gatos ganan!", align="center", font=("Arial", 20, "bold"))
+                else:
+                    pre_timer.write(f"¡Los perros ganan!", align="center", font=("Arial", 20, "bold"))
+                screen.update()
+                time.sleep(1)
+                pre_timer.clear()  # limpiar mensaje
+            sys.exit()    
         else:
             reiniciar_tablero() # reiniciar el tablero para una nueva ronda
 
