@@ -374,7 +374,7 @@ def clicker_round():
     
 
 # --- Configuración de la ventana ---
-setup(775, 550, 370, 0) #ancho = 650, alto = 450
+setup(775, 550, 370, 0) #ancho = 775, alto = 550
 
 hideturtle() #ocultar cursor
 grid()
