@@ -67,7 +67,7 @@ def grid():
     grid_turtle.goto(200, 67)
 
     grid_turtle.penup()
-    screen.bgpic("fondo.gif") #fondo del tablero
+    screen.bgpic("fondo_tictactoe_(1).gif") #fondo del tablero
 
 #Listas globales
 turtles_jugadas = [] #Para X y O
