@@ -26,7 +26,7 @@ screen.addshape("Dibujos_TICTACTOE/3_corazones.gif")
 screen.addshape("Dibujos_TICTACTOE/2_corazones.gif")
 screen.addshape("Dibujos_TICTACTOE/1_corazon.gif")
 screen.addshape("perro_final.gif")
-screen.addshape("gato_final.gif")
+screen.addshape("Dibujos_TICTACTOE/gato_final.gif")
 screen.addshape("hueso_perro_O.gif")
 
 
@@ -249,7 +249,7 @@ def tap(x, y):
                 if(vidas_perro < vidas_gato):
                     pre_timer.write(f"¡Los gatos ganan!", align="center", font=("Arial", 20, "bold"))
                     gato.penup()
-                    gato.shape("gato_final.gif")
+                    gato.shape("Dibujos_TICTACTOE/gato_final.gif")
                     gato.goto(0, -100)
                     gato.showturtle()
                 else:
@@ -298,7 +298,7 @@ def tap(x, y):
                 if(vidas_perro < vidas_gato):
                     pre_timer.write(f"¡Los gatos ganan!", align="center", font=("Arial", 20, "bold"))
                     gato.penup()
-                    gato.shape("gato_final.gif")
+                    gato.shape("Dibujos_TICTACTOE/gato_final.gif")
                     gato.goto(0, -100)
                     gato.showturtle()
                 else:
