@@ -16,7 +16,7 @@ screen = Screen()
 tracer(False)
 
 # GIFS importados
-screen.addshape("gato_principal.gif")
+screen.addshape("Dibujos_TICTACTOE/gato_principal.gif")
 screen.addshape("Dibujos_TICTACTOE/gato_pelea.gif")
 screen.addshape("perro_principal.gif")
 screen.addshape("Dibujos_TICTACTOE/perrp_pelea.gif")
@@ -78,7 +78,7 @@ turtles_jugadas = []
 gato = Turtle()
 gato.hideturtle()
 gato.penup()
-gato.shape("gato_principal.gif")
+gato.shape("Dibujos_TICTACTOE/gato_principal.gif")
 gato.goto(-300, -165)
 gato.showturtle()
 
