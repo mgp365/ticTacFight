@@ -23,7 +23,7 @@ screen.addshape("perrp_pelea.gif")
 screen.addshape("pescado_X.gif")
 screen.addshape("fondo.gif")
 screen.addshape("Dibujos_TICTACTOE/3_corazones.gif")
-screen.addshape("2_corazones.gif")
+screen.addshape("Dibujos_TICTACTOE/2_corazones.gif")
 screen.addshape("Dibujos_TICTACTOE/1_corazon.gif")
 screen.addshape("perro_final.gif")
 screen.addshape("gato_final.gif")
@@ -105,10 +105,10 @@ vida_perro.showturtle()
 # Funciones principales del juego
 def mostrar_vidas(): # Mostrar vidas restantes con los gifs
     if vidas_gato == 3: vida_gato.shape("Dibujos_TICTACTOE/3_corazones.gif")
-    elif vidas_gato == 2: vida_gato.shape("2_corazones.gif")
+    elif vidas_gato == 2: vida_gato.shape("Dibujos_TICTACTOE/2_corazones.gif")
     elif vidas_gato == 1: vida_gato.shape("Dibujos_TICTACTOE/1_corazon.gif")
     if vidas_perro == 3: vida_perro.shape("Dibujos_TICTACTOE/3_corazones.gif")
-    elif vidas_perro == 2: vida_perro.shape("2_corazones.gif")
+    elif vidas_perro == 2: vida_perro.shape("Dibujos_TICTACTOE/2_corazones.gif")
     elif vidas_perro == 1: vida_perro.shape("Dibujos_TICTACTOE/1_corazon.gif")
 
 def drawx(x, y):
