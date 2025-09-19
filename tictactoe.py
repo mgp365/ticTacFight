@@ -5,9 +5,9 @@ from freegames import line
 import sys # cuando eliminemos lo que que si ganan se cierra lo quito!!!
 from turtle import Turtle, Screen
 import time
-import pygame
+import pygame # solo para la música
 
-pygame.mixer.init()
+pygame.mixer.init() #música :D
 pygame.mixer.music.load("clicker_song.mp3")
 pygame.mixer.music.play(-1)
 
