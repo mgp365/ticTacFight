@@ -22,12 +22,13 @@ screen.addshape("gato_pelea.gif")
 screen.addshape("perro_principal.gif")
 screen.addshape("perro_enojado.gif")
 screen.addshape("pescado_X.gif")
-screen.addshape("fondo.gif")
+screen.addshape("fondo_tictactoe_(1).gif")
 screen.addshape("3_corazones.gif")
 screen.addshape("2_corazones.gif")
 screen.addshape("1_corazon.gif")
 screen.addshape("perro_final.gif")
 screen.addshape("gato_final.gif")
+screen.addshape("hueso_perro_O.gif")
 # AÑADIR PERRO PELEANDO Y HUESO
 
 # Matriz de control inicial, va cambiando con el juego
@@ -115,7 +116,7 @@ def drawx(x, y):
     """Draw X player."""
     t_x = Turtle()
     t_x.penup()
-    t_x.shape("gato_enojado.gif") # Perro con hueso AÑADIIIIIIIIIIIRRRRRRRR
+    t_x.shape("hueso_perro_O.gif") # Perro con hueso AÑADIIIIIIIIIIIRRRRRRRR
     t_x.goto(x+67, y+67) 
     t_x.showturtle()
     turtles_jugadas.append(t_x)
@@ -409,6 +410,11 @@ def clicker_round():
     grid() # Redibujar grid
     gato.showturtle() # Mostrar gato principal
     perro.showturtle() # Mostrar perro principal
+    screen.bgpic("fondo_tictactoe_(1).gif") # restaurar fondo
+    grid() # redibujar grid
+    gato.showturtle()        # mostrar gato principal
+    perro.showturtle()       # mostrar perro principal
+    
     for t_xo in turtles_jugadas:
         t_xo.showturtle()
     mostrar_vidas() # Mostrar vidas actualizadas
