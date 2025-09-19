@@ -41,7 +41,7 @@ grid_turtle.penup()
 def grid():
     """Draw tic-tac-toe grid."""
     grid_turtle.clear()
-    grid_turtle.pensize(3)
+    grid_turtle.pensize(5)
     grid_turtle.color("black")
 
     # Líneas verticales
