@@ -16,19 +16,19 @@ screen = Screen()
 tracer(False)
 
 # GIFS importados
-screen.addshape("gato_principal.gif")
-screen.addshape("gato_pelea.gif")
-screen.addshape("perro_principal.gif")
-screen.addshape("perrp_pelea.gif")
-screen.addshape("pescado_X.gif")
-screen.addshape("fondo.gif")
-screen.addshape("3_corazones.gif")
-screen.addshape("2_corazones.gif")
-screen.addshape("1_corazon.gif")
-screen.addshape("perro_final.gif")
-screen.addshape("gato_final.gif")
-screen.addshape("hueso_perro_O.gif")
-# AÑADIR PERRO PELEANDO Y HUESO
+screen.addshape("Dibujos_TICTACTOE/gato_principal.gif")
+screen.addshape("Dibujos_TICTACTOE/gato_pelea.gif")
+screen.addshape("Dibujos_TICTACTOE/perro_principal.gif")
+screen.addshape("Dibujos_TICTACTOE/perrp_pelea.gif")
+screen.addshape("Dibujos_TICTACTOE/pescado_X.gif")
+screen.addshape("Dibujos_TICTACTOE/fondo.gif")
+screen.addshape("Dibujos_TICTACTOE/3_corazones.gif")
+screen.addshape("Dibujos_TICTACTOE/2_corazones.gif")
+screen.addshape("Dibujos_TICTACTOE/1_corazon.gif")
+screen.addshape("Dibujos_TICTACTOE/perro_final.gif")
+screen.addshape("Dibujos_TICTACTOE/gato_final.gif")
+screen.addshape("Dibujos_TICTACTOE/hueso_perro_O.gif")
+
 
 # Matriz de control inicial, va cambiando con el juego
 matriz = [[0,0,0],[0,0,0],[0,0,0]]
@@ -41,7 +41,7 @@ grid_turtle.penup()
 def grid():
     """Draw tic-tac-toe grid."""
     grid_turtle.clear()
-    grid_turtle.pensize(3)
+    grid_turtle.pensize(5)
     grid_turtle.color("black")
 
     # Líneas verticales
@@ -67,7 +67,7 @@ def grid():
     grid_turtle.goto(200, 67)
 
     grid_turtle.penup()
-    screen.bgpic("fondo.gif") # Fondo del tablero
+    screen.bgpic("Dibujos_TICTACTOE/fondo.gif") # Fondo del tablero
 
 # Listas globales para x y o
 turtles_jugadas = []
@@ -78,7 +78,7 @@ turtles_jugadas = []
 gato = Turtle()
 gato.hideturtle()
 gato.penup()
-gato.shape("gato_principal.gif")
+gato.shape("Dibujos_TICTACTOE/gato_principal.gif")
 gato.goto(-300, -165)
 gato.showturtle()
 
@@ -86,7 +86,7 @@ gato.showturtle()
 perro = Turtle()
 perro.hideturtle()
 perro.penup()
-perro.shape("perro_principal.gif")
+perro.shape("Dibujos_TICTACTOE/perro_principal.gif")
 perro.goto(300, -150)
 perro.showturtle()
 
@@ -104,18 +104,18 @@ vida_perro.showturtle()
 
 # Funciones principales del juego
 def mostrar_vidas(): # Mostrar vidas restantes con los gifs
-    if vidas_gato == 3: vida_gato.shape("3_corazones.gif")
-    elif vidas_gato == 2: vida_gato.shape("2_corazones.gif")
-    elif vidas_gato == 1: vida_gato.shape("1_corazon.gif")
-    if vidas_perro == 3: vida_perro.shape("3_corazones.gif")
-    elif vidas_perro == 2: vida_perro.shape("2_corazones.gif")
-    elif vidas_perro == 1: vida_perro.shape("1_corazon.gif")
+    if vidas_gato == 3: vida_gato.shape("Dibujos_TICTACTOE/3_corazones.gif")
+    elif vidas_gato == 2: vida_gato.shape("Dibujos_TICTACTOE/2_corazones.gif")
+    elif vidas_gato == 1: vida_gato.shape("Dibujos_TICTACTOE/1_corazon.gif")
+    if vidas_perro == 3: vida_perro.shape("Dibujos_TICTACTOE/3_corazones.gif")
+    elif vidas_perro == 2: vida_perro.shape("Dibujos_TICTACTOE/2_corazones.gif")
+    elif vidas_perro == 1: vida_perro.shape("Dibujos_TICTACTOE/1_corazon.gif")
 
 def drawx(x, y):
     """Draw X player."""
     t_x = Turtle()
     t_x.penup()
-    t_x.shape("hueso_perro_O.gif") # Perro con hueso AÑADIIIIIIIIIIIRRRRRRRR
+    t_x.shape("Dibujos_TICTACTOE/hueso_perro_O.gif") # Hueso de perro
     t_x.goto(x+67, y+67) 
     t_x.showturtle()
     turtles_jugadas.append(t_x)
@@ -124,7 +124,7 @@ def drawo(x, y):
     """Draw O player."""
     t_o = Turtle()
     t_o.penup()
-    t_o.shape("pescado_X.gif") # Gato con pescado
+    t_o.shape("Dibujos_TICTACTOE/pescado_X.gif") # Gato con pescado
     t_o.goto(x+67, y+90)
     t_o.showturtle() 
     turtles_jugadas.append(t_o)
@@ -249,13 +249,13 @@ def tap(x, y):
                 if(vidas_perro < vidas_gato):
                     pre_timer.write(f"¡Los gatos ganan!", align="center", font=("Arial", 20, "bold"))
                     gato.penup()
-                    gato.shape("gato_final.gif")
+                    gato.shape("Dibujos_TICTACTOE/gato_final.gif")
                     gato.goto(0, -100)
                     gato.showturtle()
                 else:
                     pre_timer.write(f"¡Los perros ganan!", align="center", font=("Arial", 20, "bold"))
                     perro.penup()
-                    perro.shape("perro_final.gif")
+                    perro.shape("Dibujos_TICTACTOE/perro_final.gif")
                     perro.goto(0, -100)
                     perro.showturtle()
                 screen.update()
@@ -298,13 +298,13 @@ def tap(x, y):
                 if(vidas_perro < vidas_gato):
                     pre_timer.write(f"¡Los gatos ganan!", align="center", font=("Arial", 20, "bold"))
                     gato.penup()
-                    gato.shape("gato_final.gif")
+                    gato.shape("Dibujos_TICTACTOE/gato_final.gif")
                     gato.goto(0, -100)
                     gato.showturtle()
                 else:
                     pre_timer.write(f"¡Los perros ganan!", align="center", font=("Arial", 20, "bold"))
                     perro.penup()
-                    perro.shape("perro_final.gif")
+                    perro.shape("Dibujos_TICTACTOE/perro_final.gif")
                     perro.goto(0, -100)
                     perro.showturtle()
                 screen.update()
@@ -322,7 +322,6 @@ def clicker_round():
     duration = 9  # Segundos aproximados
 
     # Limpiar tablero y dejar en blanco
-    screen.bgpic("")  # Quitar fondo
     grid_turtle.clear() # Borrar líneas del grid
     for t_xo in turtles_jugadas:
         t_xo.hideturtle() # Ocultar todas las X y O
@@ -355,14 +354,14 @@ def clicker_round():
     gato_clicker = Turtle()
     gato_clicker.hideturtle()
     gato_clicker.penup()
-    gato_clicker.shape("gato_pelea.gif")
+    gato_clicker.shape("Dibujos_TICTACTOE/gato_pelea.gif")
     gato_clicker.goto(-300, -165)
     gato_clicker.showturtle()
 
     perro_clicker = Turtle()
     perro_clicker.hideturtle()
     perro_clicker.penup()
-    perro_clicker.shape("perrp_pelea.gif")
+    perro_clicker.shape("Dibujos_TICTACTOE/perrp_pelea.gif")
     perro_clicker.goto(300, -150)
     perro_clicker.showturtle()
 
@@ -406,6 +405,7 @@ def clicker_round():
 
     # Reiniciar el tablero
     screen.bgpic("fondo.gif") # Restaurar fondo
+    screen.bgpic("Dibujos_TICTACTOE/fondo.gif") # Restaurar fondo
     grid() # Redibujar grid
     gato.showturtle() # Mostrar gato principal
     perro.showturtle() # Mostrar perro principal
