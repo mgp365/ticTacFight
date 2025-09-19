@@ -322,7 +322,6 @@ def clicker_round():
     duration = 9  # Segundos aproximados
 
     # Limpiar tablero y dejar en blanco
-    screen.bgpic("")  # Quitar fondo
     grid_turtle.clear() # Borrar líneas del grid
     for t_xo in turtles_jugadas:
         t_xo.hideturtle() # Ocultar todas las X y O
