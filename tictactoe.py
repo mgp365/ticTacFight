@@ -108,7 +108,6 @@ vida_perro.showturtle()
 
 # --- Funciones para el juego ---
 def mostrar_vidas(): # mostrar vidas restantes con los gifs
-    """Actualizar la forma de los turtles de vidas según las vidas restantes."""
     if vidas_gato == 3:
         vida_gato.shape("3_corazones.gif")
     elif vidas_gato == 2:
@@ -294,6 +293,7 @@ def clicker_round():
         time.sleep(1)
     pre_timer.clear()  # limpiar mensaje
 
+    # Mostrar vidas de nuevo
     mostrar_vidas()
     vida_gato.showturtle()
     vida_perro.showturtle()
@@ -321,7 +321,7 @@ def clicker_round():
     mensaje.goto(0, 200)
     mensaje.write("¡Clicker! Presiona 'A' (Gato) o 'L' (Perro) 5 segundos", align="center", font=("Arial", 16, "bold"))
 
-    # Mostrar contador en tiempo real
+    # Mostrar contador
     contador = Turtle()
     contador.hideturtle()
     contador.penup()
@@ -359,7 +359,7 @@ def clicker_round():
     perro.showturtle()       # mostrar perro principal
     for t_xo in turtles_jugadas:
         t_xo.showturtle()
-    mostrar_vidas()
+    mostrar_vidas() # mostrar vidas actualizadas
     vida_gato.showturtle()
     vida_perro.showturtle()
     update()
