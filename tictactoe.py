@@ -404,7 +404,6 @@ def clicker_round():
     screen.onkey(None, "l")
 
     # Reiniciar el tablero
-    screen.bgpic("fondo.gif") # Restaurar fondo
     screen.bgpic("Dibujos_TICTACTOE/fondo.gif") # Restaurar fondo
     grid() # Redibujar grid
     gato.showturtle() # Mostrar gato principal
