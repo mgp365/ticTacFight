@@ -323,13 +323,13 @@ def clicker_round():
     duration = 9  # Segundos aproximados
 
     # Limpiar tablero y dejar en blanco
-    screen.bgpic("")  # quitar fondo
-    grid_turtle.clear() # borrar líneas del grid
+    screen.bgpic("")  # Quitar fondo
+    grid_turtle.clear() # Borrar líneas del grid
     for t_xo in turtles_jugadas:
-        t_xo.hideturtle() # ocultar todas las X y O
-    gato.hideturtle()        # ocultar gato principal
-    perro.hideturtle()       # ocultar perro principal
-    vida_gato.hideturtle()  # ocultar vidas
+        t_xo.hideturtle() # Ocultar todas las X y O
+    gato.hideturtle() # Ocultar gato principal
+    perro.hideturtle() # Ocultar perro principal
+    vida_gato.hideturtle() # Ocultar vidas
     vida_perro.hideturtle()
     screen.update()
 
@@ -414,7 +414,7 @@ def clicker_round():
     grid() # redibujar grid
     gato.showturtle()        # mostrar gato principal
     perro.showturtle()       # mostrar perro principal
-    
+
     for t_xo in turtles_jugadas:
         t_xo.showturtle()
     mostrar_vidas() # Mostrar vidas actualizadas
