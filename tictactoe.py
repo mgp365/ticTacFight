@@ -25,6 +25,7 @@ screen.addshape("fondo.gif")
 screen.addshape("3_corazones.gif")
 screen.addshape("2_corazones.gif")
 screen.addshape("1_corazon.gif")
+# AÑADIR PERRO PELEANDO Y HUESO
 
 #Matriz de control, va cambiando con el juego!!!
 matriz = [[0,0,0],[0,0,0],[0,0,0]]
@@ -112,7 +113,7 @@ def drawx(x, y):
     """Draw X player."""
     t_x = Turtle()
     t_x.penup()
-    t_x.shape("gato_enojado.gif") # Perro con hueso
+    t_x.shape("gato_enojado.gif") # Perro con hueso AÑADIIIIIIIIIIIRRRRRRRR
     t_x.goto(x+67, y+67) 
     t_x.showturtle()
     turtles_jugadas.append(t_x)
