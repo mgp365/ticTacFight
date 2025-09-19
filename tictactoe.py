@@ -16,11 +16,10 @@ screen = Screen()
 tracer(False)
 
 # GIFS importados
-screen.addshape("gato_enojado.gif")
 screen.addshape("gato_principal.gif")
 screen.addshape("gato_pelea.gif")
 screen.addshape("perro_principal.gif")
-screen.addshape("perro_enojado.gif")
+screen.addshape("perrp_pelea.gif")
 screen.addshape("pescado_X.gif")
 screen.addshape("fondo_tictactoe_(1).gif")
 screen.addshape("3_corazones.gif")
@@ -363,7 +362,7 @@ def clicker_round():
     perro_clicker = Turtle()
     perro_clicker.hideturtle()
     perro_clicker.penup()
-    perro_clicker.shape("perro_enojado.gif")
+    perro_clicker.shape("perrp_pelea.gif")
     perro_clicker.goto(300, -150)
     perro_clicker.showturtle()
 
@@ -406,7 +405,7 @@ def clicker_round():
     screen.onkey(None, "l")
 
     # Reiniciar el tablero
-    screen.bgpic("fondo.gif") # Restaurar fondo
+    screen.bgpic("fondo_tictactoe_(1).gif") # Restaurar fondo
     grid() # Redibujar grid
     gato.showturtle() # Mostrar gato principal
     perro.showturtle() # Mostrar perro principal
