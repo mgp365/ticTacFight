@@ -20,7 +20,7 @@ screen.addshape("Dibujos_TICTACTOE/gato_principal.gif")
 screen.addshape("Dibujos_TICTACTOE/gato_pelea.gif")
 screen.addshape("Dibujos_TICTACTOE/perro_principal.gif")
 screen.addshape("Dibujos_TICTACTOE/perrp_pelea.gif")
-screen.addshape("pescado_X.gif")
+screen.addshape("Dibujos_TICTACTOE/pescado_X.gif")
 screen.addshape("Dibujos_TICTACTOE/fondo.gif")
 screen.addshape("Dibujos_TICTACTOE/3_corazones.gif")
 screen.addshape("Dibujos_TICTACTOE/2_corazones.gif")
@@ -115,7 +115,7 @@ def drawx(x, y):
     """Draw X player."""
     t_x = Turtle()
     t_x.penup()
-    t_x.shape("Dibujos_TICTACTOE/hueso_perro_O.gif")
+    t_x.shape("Dibujos_TICTACTOE/hueso_perro_O.gif") # Hueso de perro
     t_x.goto(x+67, y+67) 
     t_x.showturtle()
     turtles_jugadas.append(t_x)
@@ -124,7 +124,7 @@ def drawo(x, y):
     """Draw O player."""
     t_o = Turtle()
     t_o.penup()
-    t_o.shape("pescado_X.gif") # Gato con pescado
+    t_o.shape("Dibujos_TICTACTOE/pescado_X.gif") # Gato con pescado
     t_o.goto(x+67, y+90)
     t_o.showturtle() 
     turtles_jugadas.append(t_o)
