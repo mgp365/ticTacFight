@@ -9,43 +9,34 @@ import time
 screen = Screen()
 tracer(False)
 
-# --- Cargar GIFs ---
-# Cargar las imágenes GIF del gato
+# GIFS
 screen.addshape("gato_enojado.gif")
 screen.addshape("gato_principal.gif")
 screen.addshape("gato_pelea.gif")
-
-# Cargar las imágenes GIF del perro
 screen.addshape("perro_principal.gif")
 screen.addshape("perro_enojado.gif")
-
-# Cargar la imagen GIF del pescado (X)
 screen.addshape("pescado_X.gif")
-
-# Cargar la imagen GIF del fondo
 screen.addshape("fondo.gif")
-
-# Cargar las imágenes GIF de las vidas
 screen.addshape("3_corazones.gif")
 screen.addshape("2_corazones.gif")
 screen.addshape("1_corazon.gif")
 
-# Implementación: Matrices para control de rondas
-matriz = [[0,0,0],[0,0,0],[0,0,0]] # matriz inicial (0)
+#Matriz de control, va cambiando con el juego!!!
+matriz = [[0,0,0],[0,0,0],[0,0,0]]
 
-# Crear turtle para el grid (para poder borrarlo y redibujarlo)
+#Crear turtle para el grid (para poder borrarlo y redibujarlo)
 grid_turtle = Turtle()
 grid_turtle.hideturtle()
 grid_turtle.penup()
 
 def grid():
     """Draw tic-tac-toe grid."""
-    # line(-67, 200, -67, -200) line(67, 200, 67, -200) line(-200, -67, 200, -67) line(-200, 67, 200, 67)
+    #line(-67, 200, -67, -200) line(67, 200, 67, -200) line(-200, -67, 200, -67) line(-200, 67, 200, 67)
     grid_turtle.clear()
     grid_turtle.pensize(3)
     grid_turtle.color("black")
 
-    # Verticales
+    #Verticales
     grid_turtle.penup()
     grid_turtle.goto(-67, 200)
     grid_turtle.pendown()
@@ -56,7 +47,7 @@ def grid():
     grid_turtle.pendown()
     grid_turtle.goto(67, -200)
 
-    # Horizontales
+    #Horizontales
     grid_turtle.penup()
     grid_turtle.goto(-200, -67)
     grid_turtle.pendown()
@@ -68,15 +59,14 @@ def grid():
     grid_turtle.goto(200, 67)
 
     grid_turtle.penup()
+    screen.bgpic("fondo.gif") #fondo del tablero
 
-    screen.bgpic("fondo.gif") # fondo del tablero
-
-# Listas globales
-turtles_jugadas = []  # Para X y O
+#Listas globales
+turtles_jugadas = [] #Para X y O
 
 # --- Mostrar personajes y vidas en la ventana ---
 
-# Gato principal a la izquierda
+#Gato principal a la izquierda
 gato = Turtle()
 gato.hideturtle()
 gato.penup()
@@ -98,29 +88,20 @@ vida_gato.hideturtle()
 vida_gato.penup()
 vida_gato.goto(-300, -50)
 vida_gato.showturtle()
-
 vida_perro = Turtle()
 vida_perro.hideturtle()
 vida_perro.penup()
 vida_perro.goto(290, -50)
 vida_perro.showturtle()
 
-
 # --- Funciones para el juego ---
-def mostrar_vidas(): # mostrar vidas restantes con los gifs
-    if vidas_gato == 3:
-        vida_gato.shape("3_corazones.gif")
-    elif vidas_gato == 2:
-        vida_gato.shape("2_corazones.gif")
-    elif vidas_gato == 1:
-        vida_gato.shape("1_corazon.gif")
-
-    if vidas_perro == 3:
-        vida_perro.shape("3_corazones.gif")
-    elif vidas_perro == 2:
-        vida_perro.shape("2_corazones.gif")
-    elif vidas_perro == 1:
-        vida_perro.shape("1_corazon.gif")
+def mostrar_vidas(): #mostrar vidas restantes con los gifs
+    if vidas_gato == 3: vida_gato.shape("3_corazones.gif")
+    elif vidas_gato == 2: vida_gato.shape("2_corazones.gif")
+    elif vidas_gato == 1: vida_gato.shape("1_corazon.gif")
+    if vidas_perro == 3: vida_perro.shape("3_corazones.gif")
+    elif vidas_perro == 2: vida_perro.shape("2_corazones.gif")
+    elif vidas_perro == 1: vida_perro.shape("1_corazon.gif")
 
 def drawx(x, y):
     """Draw X player."""
@@ -373,7 +354,7 @@ def clicker_round():
         return 0  # empate de clicks → nadie pierde vida
     
 
-# --- Configuración de la ventana ---
+# Configuración de la ventana
 setup(775, 550, 370, 0) #ancho = 775, alto = 550
 
 hideturtle() #ocultar cursor
