@@ -247,14 +247,28 @@ def tap(x, y):
                 pre_timer.clear()
                 if(vidas_perro < vidas_gato):
                     pre_timer.write(f"¡Los gatos ganan!", align="center", font=("Arial", 20, "bold"))
+                    #gato = Turtle()
+                    #gato.hideturtle()
+                    gato.penup()
+                    gato.shape("gato_principal.gif")
+                    gato.goto(0, -100)
+                    gato.showturtle()
                 else:
                     pre_timer.write(f"¡Los perros ganan!", align="center", font=("Arial", 20, "bold"))
+                    # Perro principal a la derecha
+                    #perro = Turtle()
+                    #perro.hideturtle()
+                    perro.penup()
+                    perro.shape("perro_principal.gif")
+                    perro.goto(0, -100)
+                    perro.showturtle()
                 screen.update()
                 time.sleep(1)
                 pre_timer.clear()  # limpiar mensaje
             sys.exit()    
         else:
             reiniciar_tablero() # reiniciar el tablero para una nueva ronda
+
 
     # Revisar empate
     if empate():
@@ -267,7 +281,31 @@ def tap(x, y):
         mostrar_vidas()
 
         if vidas_gato == 0 or vidas_perro == 0:
-            print("¡Juego terminado!")
+            screen.bgpic("")  # quitar fondo
+            grid_turtle.clear() # borrar líneas del grid
+            for t_xo in turtles_jugadas:
+                t_xo.hideturtle() # ocultar todas las X y O
+            gato.hideturtle()        # ocultar gato principal
+            perro.hideturtle()       # ocultar perro principal
+            vida_gato.hideturtle()  # ocultar vidas
+            vida_perro.hideturtle()
+            screen.update()
+
+                # Countdown para cerrar
+            pre_countdown = 5
+            pre_timer = Turtle()
+            pre_timer.hideturtle()
+            pre_timer.penup()
+            pre_timer.goto(0, 100)
+            for i in range(pre_countdown, 0, -1): # cuenta regresiva
+                pre_timer.clear()
+                if(vidas_perro < vidas_gato):
+                    pre_timer.write(f"¡Los gatos ganan!", align="center", font=("Arial", 20, "bold"))
+                else:
+                    pre_timer.write(f"¡Los perros ganan!", align="center", font=("Arial", 20, "bold"))
+                screen.update()
+                time.sleep(1)
+                pre_timer.clear()  # limpiar mensaje
             sys.exit()
         else:
             reiniciar_tablero()
