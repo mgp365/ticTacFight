@@ -25,6 +25,8 @@ screen.addshape("fondo.gif")
 screen.addshape("3_corazones.gif")
 screen.addshape("2_corazones.gif")
 screen.addshape("1_corazon.gif")
+screen.addshape("perro_final.gif")
+screen.addshape("gato_final.gif")
 # AÑADIR PERRO PELEANDO Y HUESO
 
 #Matriz de control, va cambiando con el juego!!!
@@ -251,7 +253,7 @@ def tap(x, y):
                     #gato = Turtle()
                     #gato.hideturtle()
                     gato.penup()
-                    gato.shape("gato_principal.gif")
+                    gato.shape("gato_final.gif")
                     gato.goto(0, -100)
                     gato.showturtle()
                 else:
@@ -260,7 +262,7 @@ def tap(x, y):
                     #perro = Turtle()
                     #perro.hideturtle()
                     perro.penup()
-                    perro.shape("perro_principal.gif")
+                    perro.shape("perro_final.gif")
                     perro.goto(0, -100)
                     perro.showturtle()
                 screen.update()
@@ -281,7 +283,9 @@ def tap(x, y):
 
         mostrar_vidas()
 
-        if vidas_gato == 0 or vidas_perro == 0:
+        if vidas_gato == 0 or vidas_perro == 0: # si alguien se queda sin vidas, termina el juego
+            #print("¡Juego terminado!")
+            # Limpiar tablero y dejar en blanco
             screen.bgpic("")  # quitar fondo
             grid_turtle.clear() # borrar líneas del grid
             for t_xo in turtles_jugadas:
@@ -302,14 +306,28 @@ def tap(x, y):
                 pre_timer.clear()
                 if(vidas_perro < vidas_gato):
                     pre_timer.write(f"¡Los gatos ganan!", align="center", font=("Arial", 20, "bold"))
+                    #gato = Turtle()
+                    #gato.hideturtle()
+                    gato.penup()
+                    gato.shape("gato_final.gif")
+                    gato.goto(0, -100)
+                    gato.showturtle()
                 else:
                     pre_timer.write(f"¡Los perros ganan!", align="center", font=("Arial", 20, "bold"))
+                    # Perro principal a la derecha
+                    #perro = Turtle()
+                    #perro.hideturtle()
+                    perro.penup()
+                    perro.shape("perro_final.gif")
+                    perro.goto(0, -100)
+                    perro.showturtle()
                 screen.update()
                 time.sleep(1)
                 pre_timer.clear()  # limpiar mensaje
-            sys.exit()
+            sys.exit()    
         else:
-            reiniciar_tablero()
+            reiniciar_tablero() # reiniciar el tablero para una nueva ronda
+
 
 # --- Ronda de clicker para desempatar ---
 def clicker_round():
