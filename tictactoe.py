@@ -27,7 +27,7 @@ screen.addshape("Dibujos_TICTACTOE/2_corazones.gif")
 screen.addshape("Dibujos_TICTACTOE/1_corazon.gif")
 screen.addshape("perro_final.gif")
 screen.addshape("Dibujos_TICTACTOE/gato_final.gif")
-screen.addshape("hueso_perro_O.gif")
+screen.addshape("Dibujos_TICTACTOE/hueso_perro_O.gif")
 
 
 # Matriz de control inicial, va cambiando con el juego
@@ -115,7 +115,7 @@ def drawx(x, y):
     """Draw X player."""
     t_x = Turtle()
     t_x.penup()
-    t_x.shape("hueso_perro_O.gif") # Perro con hueso AÑADIIIIIIIIIIIRRRRRRRR
+    t_x.shape("Dibujos_TICTACTOE/hueso_perro_O.gif")
     t_x.goto(x+67, y+67) 
     t_x.showturtle()
     turtles_jugadas.append(t_x)
