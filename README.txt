@@ -6,7 +6,7 @@ Además, para hacer el juego más dinámico y menos simple, agregamos un sistema
 Proceso seguido:
 1. Idea inicial: Lo primero que hicimos fue tomar como base el código del juego dado por freegames y a partir de ahí, pensamos en reemplazar las equis y círculos por imágenes más atractivas, e incluso añadir un personaje que represente a cada jugador (en este caso el perro y el gato, asimismo como el pescado y el hueso). 
 También se decidió que cada jugador tendría tres vidas, lo que da una mayor continuidad entre cada ronda de juego y la ronda del clicker para desempatar ya que sobre todo en este juego pueden existir muchos empates en cada ronda y al final resulta un poco repetitivo el tener que solamente reiniciar el tablero. 
-Es importante resaltar que los diseños fueron creados y dibujados por César Bernal, por lo que todas las ilustraciones que se pueden observar son originales.
+Es importante resaltar que los diseños fueron creados y dibujados por César Bernal, por lo que todas las ilustraciones que se pueden observar son originales (a excepción de las imágenes finales cuando alguien ganó).
 
 2. Configuración inicial: Se utiliza la librería de Turtle para dibujar el tablero y todas las imágenes. Junto con esto se cargaron cada uno de los gif del gato y perro, así también como de los corazones y el fondo. Además se añadió la librería de Pygame para poder añadir música de fondo y mejorar la experiencia de juego.
 
